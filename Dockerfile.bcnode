@@ -1,0 +1,16 @@
+FROM blockcollider/bcnode
+
+RUN apt-get update && apt-get install -y --no-install-recommends libfile-slurp-perl && rm -rf /var/lib/apt/lists/*
+
+# Custom entrypoint
+COPY bcnode/docker-entrypoint.sh /
+
+COPY bcnode/monkey-patch /tmp
+
+VOLUME /bc/config
+VOLUME /bc/_data
+VOLUME /bc/_logs
+
+EXPOSE 3000 3001 16060 16061
+
+ENTRYPOINT [ "/docker-entrypoint.sh" ]
