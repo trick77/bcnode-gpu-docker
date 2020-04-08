@@ -22,7 +22,7 @@ In a nutshell:
 1. Install https://github.com/NVIDIA/nvidia-docker
 1. This might be a good time for a system reboot.
 1. ```git clone https://github.com/trick77/bcnode-gpu-docker bcnode-gpu-docker && cd $_```
-1. Build the Docker images locally using ```./build-images.sh``` (grab an xc0ffee since this will take a while)
+1. Build the Docker images locally using ```./build-images.sh``` (grab an 0xc0ffee since this will take a while)
 1. If the image build was a success, start the containers with the provided ```./start.sh``` in this directory
 
 Unfortunately, we can't use docker-compose for the whole thing yet since it doesn't support the required gpu flag.
