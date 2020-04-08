@@ -29,8 +29,10 @@ Unfortunately, we can't use docker-compose for the whole thing yet since it does
 
 Gotchas:
 1. Watch for errors if sudo is not installed. While sudo is not required it's contained in some of the manual installation instructions.
-3. The provided start script will output if Docker is able to find a compatible GPU on the host. If the output doesn't show any compatible GPU, you have to fix this first.
-4. You didn't read this README.
+1. The provided start script will output if Docker is able to find a compatible GPU on the host. If the output doesn't show any compatible GPU, you have to fix this first.
+1. You want to re-run ```./build-images.sh``` whenever a new blockcollider/bcnode image is released or you will mine on an outdated version rather sooner than later.
+1. You didn't read this README.
+
 
 ## Tips & tricks
 * To see what bcnode is currently doing use ```docker logs -f bcnode --tail 100```, abort the output with CTRL-C (this will not terminate the process)
