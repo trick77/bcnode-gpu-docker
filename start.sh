@@ -28,14 +28,14 @@ echo "*** Creating a comfy Docker network for the containers..."
 docker network create waietng
 
 echo "*** Firing up a container for LG's GPU miner..."
-docker run --rm --name gpuminer \
+docker run --restart=unless-stopped  --name gpuminer \
 --gpus all \
 -p 50052 -d \
 --network waietng \
 ${gpuminer_image} 2>&1
 
 echo "*** Starting bcnode container..."
-docker run --rm --name bcnode \
+docker run --restart=unless-stopped --name bcnode \
 --memory-reservation="6900m" \
 -p 3000:3000 -p 16060:16060/tcp -p 16060:16060/udp -p 16061:16061/tcp -p 16061:16061/udp -d \
 -e BC_MINER_KEY="${BC_MINER_KEY}" \
