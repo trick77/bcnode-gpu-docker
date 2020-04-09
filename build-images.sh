@@ -1,8 +1,27 @@
 #!/usr/bin/env bash
+set -e
 
-# Always fetch latest GPU miner sources when rebuilding
+NC='\033[0m'
+RED='\033[0;31m'
+GREEN='\033[0;32m'
+YELLOW='\033[0;33m'
+
+echo -e "${GREEN}Refreshing this Git repository...${NC}"
+git pull
+echo
+
+echo -e "${GREEN}Rebuilding GPU miner sources... (this might take some time)${NC}"
 docker build --build-arg CACHEBUST=$(date +%s) -t local/gpuminer -f Dockerfile.gpuminer .
+echo
 
-# Always pull new upstream image if available
+echo -e "${GREEN}Pulling latest upstream image...${NC}"
 docker pull blockcollider/bcnode:latest
+echo
+
+echo -e "${GREEN}Building new image...${NC}"
 docker build -t local/bcnode -f Dockerfile.bcnode .
+
+echo -e "${GREEN}Showing all locally available Docker images:${NC}"
+docker images
+
+echo -e "${GREEN}Done.${NC}"
