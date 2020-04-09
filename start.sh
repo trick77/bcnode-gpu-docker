@@ -16,11 +16,11 @@ export CUDA_HOME=/usr/local/cuda
 export LD_LIBRARY_PATH=${LD_LIBRARY_PATH}:/usr/local/cuda/lib64:/usr/local/cuda/extras/CUPTI/lib64
 export PATH=${PATH}:${CUDA_HOME}/bin
 echo -e "${GREEN}Let's see if and which version of Nvidia CUDA is available on the host:${NC}"
-nvcc --version
+nvidia-smi | head -3 | tail -1
 echo
 
 echo -e "${GREEN}Check the following output if Docker has access to one or more GPUs:${NC}"
-docker run --rm --gpus all nvidia/cuda:10.2-base nvidia-smi
+docker run --rm --gpus all nvidia/cuda:10.2-base-ubuntu18.04 nvidia-smi
 
 if [ -z "${BC_MINER_KEY}" ]; then
   echo
