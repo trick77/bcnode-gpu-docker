@@ -70,5 +70,5 @@ echo -e "Hit CTRL-C to abort the output."
 echo
 echo -e "Use ./cleanup.sh to stop the miner before restarting it."
 echo
-echo -e "Use git pull to refresh this coderepository"
+echo -e "Use git pull to refresh this Git repository every now and then."
 echo -e "${NC}"
