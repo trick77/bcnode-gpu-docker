@@ -17,7 +17,7 @@ In a nutshell:
 1. Install Docker from https://docs.docker.com/install/linux/docker-ce/debian/
 1. Install Nvidia's CUDA Drivers from http://us.download.nvidia.com/tesla/440.33.01/NVIDIA-Linux-x86_64-440.33.01.run 
     1. It **must** be this version of the nvidia driver to function!
-    2. Do **not** install CUDA on the host machine unless you really know what you're doing!
+    2. Do **not** run the full CUDA installer from nvidia on the host machine unless you really know what you're doing!
 1. Install https://github.com/NVIDIA/nvidia-docker
 1. This might be a good time for a system reboot.
 1. ```git clone https://github.com/trick77/bcnode-gpu-docker bcnode-gpu-docker && cd $_```
