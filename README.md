@@ -2,8 +2,6 @@
 
 Mining on Block Collider's blockchain with LG's CUDA RPC miner in a Docker container.
 
-Important reminder: If something doesn't work, don't complain about it. Analyze it, fix it, improve it, submit a pull request.
-
 ## Prerequisites
 1. Linux-capable x86_64 PC with at least 10 GB RAM
     1. It doesn't need a fast CPU but something faster than an Atom/Celeron may be required for low latency rovering.
@@ -32,8 +30,8 @@ Gotchas:
 1. The provided start script will output if Docker is able to find a compatible GPU on the host. If the output doesn't show any compatible GPU, you have to fix this first.
 1. You want to re-run ```./build-images.sh``` whenever a new blockcollider/bcnode image is released or you will mine on an outdated version rather sooner than later.
 1. Yes, building the images locally takes some effort. However, do not rely on prebuilt 3rd party docker images. You don't know what code changes were made. You could easily be mining to someone else's wallet.
+1. If something doesn't work, don't complain about it. Analyze it, fix it, improve it, submit a pull request.
 1. You didn't read this README.
-
 
 ## Tips & tricks
 * To see what bcnode is currently doing use ```docker logs -f bcnode --tail 100```, abort the output with CTRL-C (this will not terminate the process)
