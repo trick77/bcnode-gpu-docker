@@ -10,12 +10,12 @@ gpuminer_image="local/gpuminer:latest"
 bcnode_image="local/bcnode:latest"
 
 echo
-echo -e "${RED}Make sure you've alawys run ./cleanup.sh before starting this script!${NC}"
+echo -e "${RED}Make sure to manually run ./cleanup.sh before starting this script!${NC}"
 echo
 export CUDA_HOME=/usr/local/cuda
 export LD_LIBRARY_PATH=${LD_LIBRARY_PATH}:/usr/local/cuda/lib64:/usr/local/cuda/extras/CUPTI/lib64
 export PATH=${PATH}:${CUDA_HOME}/bin
-echo -e "${GREEN}Let's see if and what version of Nvicida CUDA is installed on the host:${NC}"
+echo -e "${GREEN}Let's see if and which version of Nvidia CUDA is available on the host:${NC}"
 nvcc --version
 echo
 
