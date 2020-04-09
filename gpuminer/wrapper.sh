@@ -1,7 +1,7 @@
 #!/bin/sh
 set -e
 
-echo "*** Let's see if and which version of Nvidia CUDA is available in the container:"
+#echo "*** Let's see if and which version of Nvidia CUDA is available in the container:"
 #nvcc --version
 echo "*** Check the following output if this container has access to one or more GPUs:"
 nvidia-smi
