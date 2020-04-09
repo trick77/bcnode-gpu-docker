@@ -27,6 +27,10 @@ echo -e "${GREEN}Building new image...${NC}"
 docker build -t local/bcnode -f Dockerfile.bcnode .
 echo
 
+echo -e "${GREEN}Removing original bcnode image...${NC}"
+docker rmi blockcollider/bcnode:latest
+echo
+
 echo -e "${GREEN}Showing all locally available Docker images:${NC}"
 docker images
 
