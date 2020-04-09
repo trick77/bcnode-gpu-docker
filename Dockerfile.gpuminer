@@ -32,7 +32,7 @@ ARG GRPC_RELEASE=1.24.2
 RUN git clone -b v${GRPC_RELEASE} https://github.com/grpc/grpc /var/local/git/grpc && \
     cd /var/local/git/grpc && \
     git submodule update --init --recursive
-RUN mkdir -p /var/local/git/grpc/build && cd /var/local/git/grpc/build && cmake .. && make && make install
+RUN mkdir -p /var/local/git/grpc/build && cd /var/local/git/grpc/build && cmake .. && make -j 5 && make install
 ENV PATH="/var/local/git/grpc/build:${PATH}"
 
 ARG CACHEBUST=1 
