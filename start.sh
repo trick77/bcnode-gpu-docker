@@ -64,7 +64,7 @@ echo -e "${GREEN}Done.${NC}"
 echo
 docker ps
 echo
-echo -e "${GREEN}Verify everything runs smoothly with: docker logs -f bcnode --tail 100"
+echo -e "${YELLOW}Verify everything runs smoothly with: docker logs -f bcnode --tail 100"
 echo -e "For the GPU miner:  docker logs -f gpuminer --tail 100"
 echo -e "Hit CTRL-C to abort the output."
 echo
