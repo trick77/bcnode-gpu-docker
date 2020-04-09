@@ -48,8 +48,8 @@ Kudos go out to all the nerds in the BC GPU Miner Tester community for their tec
 Please support this development with:
 
 1. Make the GRPC miner URL fully customizable via env variable
-1. Create a way to plug in a 3rd party miner. Not disabling the Rust miner in officer.js would be a start.
-1. Handle ```MinerResponseResult.CANCELED and MinerResponseResult.ERROR``` in officer.js
+1. Create a way to plug in a 3rd party miner. Not disabling the Rust miner in ```officer.es6``` would be a start
+1. Handle ```MinerResponseResult.CANCELED and MinerResponseResult.ERROR``` in ```officer.es6```
 
 And please, stop with the closed source crap. Put all the source code and the build pipeline in a public Github repository so we don't have to dig out the transpiled results from your Docker images. It helps to support your developments and you are required to do so by law since you're using components which are released under GNU GPL:
 > "The source code for a work means the preferred form of the work for making modifications to it. For an executable work, complete source code means all the source code for all modules it contains, plus any associated interface definition files, plus the scripts used to control compilation and installation of the executable."
