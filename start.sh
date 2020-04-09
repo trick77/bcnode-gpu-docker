@@ -19,7 +19,7 @@ echo -e "${GREEN}Let's see if and what version of Nvicida CUDA is installed on t
 nvcc --version
 echo
 
-echo -e "${RED}Check the following output if Docker has access to one or more GPUs:${NC}"
+echo -e "${GREEN}Check the following output if Docker has access to one or more GPUs:${NC}"
 docker run --rm --gpus all nvidia/cuda:10.2-base nvidia-smi
 
 if [ -z "${BC_MINER_KEY}" ]; then
