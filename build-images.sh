@@ -14,7 +14,7 @@ echo -e "${GREEN}Rebuilding GPU miner sources... (this might take some time)${NC
 docker build --build-arg CACHEBUST=$(date +%s) -t local/gpuminer -f Dockerfile.gpuminer .
 echo
 
-echo -e "${GREEN}Removing intermediate build products..."
+echo -e "${GREEN}Removing intermediate build products...${NC}"
 yes | docker system prune --volumes
 docker rmi nvidia/cuda:10.2-cudnn7-devel-ubuntu18.04
 echo
