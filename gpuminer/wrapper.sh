@@ -1,8 +1,6 @@
 #!/bin/sh
 set -e
 
-export LD_LIBRARY_PATH="/root/grpc/build:$LD_LIBRARY_PATH"
-
 echo "*** Let's see if we have access to the GPU from within the container:"
 nvcc --version
 nvidia-smi
