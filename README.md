@@ -31,6 +31,7 @@ Gotchas:
 1. Watch for errors if sudo is not installed. While sudo is not required it's contained in some of the manual installation instructions.
 1. The provided start script will output if Docker is able to find a compatible GPU on the host. If the output doesn't show any compatible GPU, you have to fix this first.
 1. You want to re-run ```./build-images.sh``` whenever a new blockcollider/bcnode image is released or you will mine on an outdated version rather sooner than later.
+1. Yes, building the images locally takes some effort. However, do not rely on prebuilt 3rd party docker images. You don't know what code changes were made. You could easily be mining to someone else's wallet.
 1. You didn't read this README.
 
 
