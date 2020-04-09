@@ -35,6 +35,7 @@ Gotchas:
 
 ## Tips & tricks
 * To see what bcnode is currently doing use ```docker logs -f bcnode --tail 100```, abort the output with CTRL-C (this will not terminate the process)
+* From time to time, you may want to run a ```docker system prune -f``` to remove old images and free up disk space.
 * Use ```docker volume rm db``` to get rid of the blockchain database and start syncing from scratch. You obviously want to do this when the bcnode container is not currently running.
     * The named volume will only be created if the provided start script was used.
 
