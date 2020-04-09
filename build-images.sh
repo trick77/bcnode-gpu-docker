@@ -15,7 +15,7 @@ docker build --build-arg CACHEBUST=$(date +%s) -t local/gpuminer -f Dockerfile.g
 echo
 
 echo -e "${GREEN}Removing intermediate build products...${NC}"
-yes | docker system prune --volumes
+#yes | docker system prune --volumes # It's a bit dangerous
 docker rmi nvidia/cuda:10.2-cudnn7-devel-ubuntu18.04
 echo
 
