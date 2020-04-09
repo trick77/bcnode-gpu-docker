@@ -1,40 +1,52 @@
 #!/usr/bin/env bash
 set -e
 
+NC='\033[0m'
+RED='\033[0;31m'
+GREEN='\033[0;32m'
+YELLOW='\033[0;33m'
+
 gpuminer_image="local/gpuminer:latest"
 bcnode_image="local/bcnode:latest"
 
 echo
-echo "*** If this script fails, you may want to ./cleanup.sh before starting it again."
+echo -e "${RED}Make sure you've alawys run ./cleanup.sh before starting this script!${NC}"
 echo
-echo "!!! Check the following output if Docker has access to one or more GPUs:"
+export CUDA_HOME=/usr/local/cuda
+export LD_LIBRARY_PATH=${LD_LIBRARY_PATH}:/usr/local/cuda/lib64:/usr/local/cuda/extras/CUPTI/lib64
+export PATH=${PATH}:${CUDA_HOME}/bin
+echo -e "${GREEN}Let's see if and what version of Nvicida CUDA is installed on the host:${NC}"
+nvcc --version
+echo
+
+echo -e "${RED}Check the following output if Docker has access to one or more GPUs:${NC}"
 docker run --rm --gpus all nvidia/cuda:10.2-base nvidia-smi
 
 if [ -z "${BC_MINER_KEY}" ]; then
   echo
-  echo "Error: Miner key missing in the environment. Do something like export BC_MINER_KEY=\"0x..yourminerkey\""
-  echo "Aborting."
+  echo -e "${RED}Error: Miner key missing in the environment. Do something like export BC_MINER_KEY=\"0xc0ffee...\""
+  echo -e "Aborting.${NC}"
   exit 1
 fi
 
 if [ -z "${BC_SCOOKIE}" ]; then
   echo
-  echo "Error: Scookie is missing in the environment. Do something like export BC_SCOOKIE=\"s3cr3t\""
-  echo "Aborting."
+  echo -e "${RED}Error: Scookie is missing in the environment. Do something like export BC_SCOOKIE=\"s3cr3t\""
+  echo -e "Aborting.${NC}"
   exit 1
 fi
 
-echo "*** Creating a comfy Docker network for the containers..."
+echo -e "${GREEN}Creating a comfy Docker network for the containers...${NC}"
 docker network create waietng
 
-echo "*** Firing up a container for LG's GPU miner..."
+echo -e "${GREEN}Firing up a container for LG's GPU miner...${NC}"
 docker run --restart=unless-stopped  --name gpuminer \
 --gpus all \
 -p 50052 -d \
 --network waietng \
 ${gpuminer_image} 2>&1
 
-echo "*** Starting bcnode container..."
+echo -e "${GREEN}Starting bcnode container...${NC}"
 docker run --restart=unless-stopped --name bcnode \
 --memory-reservation="6900m" \
 -p 3000:3000 -p 16060:16060/tcp -p 16060:16060/udp -p 16061:16061/tcp -p 16061:16061/udp -d \
@@ -48,12 +60,15 @@ docker run --restart=unless-stopped --name bcnode \
 --mount source=db,target=/bc/_data \
 ${bcnode_image} \
 start --rovers --rpc --ws --ui --node --scookie "${BC_SCOOKIE}" 2>&1
-echo "*** Done."
+echo -e "${GREEN}Done.${NC}"
 echo
 docker ps
 echo
-echo "Verify everything runs smoothly with: docker logs -f bcnode --tail 100"
-echo "For the GPU miner:  docker logs -f gpuminer --tail 100"
-echo "Hit CTRL-C to abort the output."
+echo -e "${GREEN}Verify everything runs smoothly with: docker logs -f bcnode --tail 100"
+echo -e "For the GPU miner:  docker logs -f gpuminer --tail 100"
+echo -e "Hit CTRL-C to abort the output."
 echo
-echo "Use ./cleanup.sh to stop the miner before restarting it."
+echo -e "Use ./cleanup.sh to stop the miner before restarting it."
+echo
+echo -e "Use git pull to refresh this coderepository"
+echo -e "${NC}"
