@@ -9,21 +9,21 @@ YELLOW='\033[0;33m'
 while [ $# -gt 0 ]; do
   if [[ $1 == *"--"* ]]; then
     param="${1/--/}"
-    declare $param="$2"
+    declare ${param}="true"
   fi
   shift
 done
 
-if [ ! -z ${nopurge} ]; then
-  echo -e "${YELLOW}Purging intermediate build products is disabled. This will use more disk space.${NC}"
+if [ -z ${nopurge} ]; then
+  echo -e "${YELLOW}Purging intermediate build products is disabled.${NC}"
 fi
 
-if [ ! -z ${nopull} ]; then
-  echo -e "${YELLOW}Latest upstream image will not be pulled if it doesn't already exist.${NC}"
+if [ -z ${nopull} ]; then
+  echo -e "${YELLOW}Latest upstream image will not be force-pulled.${NC}"
 fi
 
-if [ ! -z ${nogpubuild} ]; then
-  echo -e "${YELLOW}Image build for the gpuminer disabled.${NC}"
+if [ -z ${nogpubuild} ]; then
+  echo -e "${YELLOW}Image build for the gpuminer is disabled.${NC}"
 fi
 
 echo -e "${GREEN}Refreshing this Git repository...${NC}"
