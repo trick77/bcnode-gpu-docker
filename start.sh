@@ -59,7 +59,7 @@ docker run --restart=unless-stopped --name bcnode \
 --network waietng \
 --mount source=db,target=/bc/_data \
 ${bcnode_image} \
-start --rovers --rpc --ws --ui --node --scookie "${BC_SCOOKIE}" 2>&1
+start --rovers --rpc --ws --ui --node --scookie "\"${BC_SCOOKIE}\"" 2>&1
 echo -e "${GREEN}Done.${NC}"
 echo
 docker ps
