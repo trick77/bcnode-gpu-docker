@@ -14,15 +14,15 @@ while [ $# -gt 0 ]; do
   shift
 done
 
-if [ -z ${nopurge} ]; then
+if [ ! -z ${nopurge} ]; then
   echo -e "${YELLOW}Purging intermediate build products is disabled.${NC}"
 fi
 
-if [ -z ${nopull} ]; then
+if [ ! -z ${nopull} ]; then
   echo -e "${YELLOW}Latest upstream image will not be force-pulled.${NC}"
 fi
 
-if [ -z ${nogpubuild} ]; then
+if [ ! -z ${nogpubuild} ]; then
   echo -e "${YELLOW}Image build for the gpuminer is disabled.${NC}"
 fi
 
