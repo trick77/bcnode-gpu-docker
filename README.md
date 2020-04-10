@@ -23,6 +23,7 @@ In a nutshell:
 1. ```git clone https://github.com/trick77/bcnode-gpu-docker bcnode-gpu-docker && cd $_```
 1. Build the Docker images locally using ```./build-images.sh``` (grab an 0xc0ffee since this will take a while)
 1. If the image build was a success, start the containers with the provided ```./start.sh``` in this directory
+    1. A one-liner to start is: ```BC_MINER_KEY="0xminer...key..." BC_SCOOKIE="s3cr3t" ./start.sh```
 
 Unfortunately, we can't use docker-compose for the whole thing yet since it doesn't support the required gpu flag.
 
