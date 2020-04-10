@@ -8,6 +8,6 @@ nvidia-smi
 # Periodically terminate (Docker will restart it automatically) the
 # GPU miner to clear "some nasty work backup". You'd have to ask LG.
 echo "*** Starting miner..."
-timeout -s INT 5m ./miner
+timeout -s INT 70s ./miner
 echo "*** Terminating miner (this is NOT an error!)..."
 echo
