@@ -15,5 +15,5 @@ sed -i "s/const[[:space:]]\+GRPC_MINER_URL[[:space:]]\+=.*/const GRPC_MINER_URL 
 
 echo "*** Starting bcnode..."
 
-exec bash -c "./bin/cli $@"
+exec ./bin/cli "$@"
 
