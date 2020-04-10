@@ -35,14 +35,14 @@ Gotchas:
 1. You didn't read this README.
 
 ## Tips & tricks
+* If you want to save time for rebuilding the images, always pass the ```--nopurge``` parameter to the ```build-images.sh``` script. This will use more diskspace though.
 * To see what bcnode is currently doing use ```docker logs -f bcnode --tail 100```, abort the output with CTRL-C (this will not terminate the process)
 * From time to time, you may want to run a ```docker system prune -f``` to remove old images and free up disk space.
 * Use ```docker volume rm db``` to get rid of the blockchain database and start syncing from scratch. You obviously want to do this when the bcnode container is not currently running.
-    * The named volume will only be created if the provided start script was used.
 
 ## Thanks
 
-Kudos go out to all the nerds in the BC GPU Miner Tester community for their tech and moral support.
+Kudos go out to all the nerds in our little BC GPU miner tester community for their know-how, tech and moral support.
 
 ## A message to the Block Collider team
 
