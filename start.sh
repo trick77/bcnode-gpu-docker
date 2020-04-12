@@ -9,6 +9,14 @@ YELLOW='\033[0;33m'
 gpuminer_image="local/gpuminer:latest"
 bcnode_image="local/bcnode:latest"
 
+while [ $# -gt 0 ]; do
+  if [[ $1 == *"--"* ]]; then
+    param="${1/--/}"
+    declare ${param}="true"
+  fi
+  shift
+done
+
 echo
 echo -e "${RED}Make sure to manually run ./cleanup.sh before starting this script!${NC}"
 echo
@@ -24,15 +32,27 @@ docker run --rm --gpus all nvidia/cuda:10.2-base-ubuntu18.04 nvidia-smi
 
 if [ -z "${BC_MINER_KEY}" ]; then
   echo
-  echo -e "${RED}Error: Miner key missing in the environment. Do something like export BC_MINER_KEY=\"0xc0ffee...\""
-  echo -e "Aborting.${NC}"
+  echo -e "${RED}Error: Miner key missing in the environment. Type something like export BC_MINER_KEY=\"0xc0ffee...\"" >&2
+  echo -e "Aborting.${NC}" >&2
   exit 1
 fi
 
 if [ -z "${BC_SCOOKIE}" ]; then
   echo
-  echo -e "${RED}Error: Scookie is missing in the environment. Do something like export BC_SCOOKIE=\"s3cr3t\""
-  echo -e "Aborting.${NC}"
+  echo -e "${RED}Error: Scookie is missing in the environment. Type something like export BC_SCOOKIE=\"s3cr3t\"" >&2
+  echo -e "Aborting.${NC}" >&2
+  exit 1
+fi
+
+if ! [ -x "$(command -v curl)" ]; then
+  echo -e "${RED}Error: curl is not installed. Use apt-get install curl to install it. Hey, and read the fricking README.md!" >&2
+  echo -e "Aborting.${NC}" >&2
+  exit 1
+fi
+
+if ! [ -x "$(command -v jq)" ]; then
+  echo -e "${RED}Error: jq is not installed. Use apt-get install jq to install it." >&2
+  echo -e "Aborting.${NC}" >&2
   exit 1
 fi
 
@@ -73,3 +93,10 @@ echo -e "Use ./cleanup.sh to stop the miner before restarting it."
 echo
 echo -e "Use git pull to refresh this Git repository every now and then."
 echo -e "${NC}"
+
+if [ -z ${nongrok} ]; then
+  echo -e "${GREEN}Waiting for ngrok tunnel to be up..."
+  sleep 5 # a loop would be more suitable here
+  echo -e "Your personal ngrok address is:${NC}"
+  curl -s --basic --user ":${BC_SCOOKIE}" -H "content-type: application/json" -H 'accept: application/json' -d '{ "jsonrpc": "2.0", "id": 123, "method": "getSettings", "params": [] }' http://localhost:3000/rpc | jq  --raw-output '.result.ngrokTunnel'
+fi
