@@ -97,6 +97,6 @@ echo -e "${NC}"
 if [ -z ${nongrok} ]; then
   echo -e "${GREEN}Waiting for ngrok tunnel to be up..."
   sleep 5 # a loop would be more suitable here
-  echo -e "Your personal ngrok address is:${NC}"
+  echo -e "Your personal HTTPS ngrok address is:${NC}"
   curl -s --basic --user ":${BC_SCOOKIE}" -H "content-type: application/json" -H 'accept: application/json' -d '{ "jsonrpc": "2.0", "id": 123, "method": "getSettings", "params": [] }' http://localhost:3000/rpc | jq  --raw-output '.result.ngrokTunnel'
 fi
