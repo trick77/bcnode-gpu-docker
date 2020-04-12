@@ -14,6 +14,12 @@ while [ $# -gt 0 ]; do
   shift
 done
 
+if ! [ -x "$(command -v git)" ]; then
+  echo -e "${RED}Error: git is not installed.${NC}" >&2
+  echo -e "Aborting.${NC}" >&2
+  exit 1
+fi
+
 if [ ! -z ${nopurge} ]; then
   echo -e "${YELLOW}Purging intermediate build products is disabled.${NC}"
 fi
