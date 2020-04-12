@@ -55,6 +55,7 @@ docker run --restart=unless-stopped --name bcnode \
 -e MIN_HEALTH_NET=true \
 -e BC_TUNNEL_HTTPS=true \
 -e BC_RPC_MINER=true \
+-e BC_MINER_WORKERS=1 \
 -e NODE_OPTIONS=--max_old_space_size=6096 \
 --network waietng \
 --mount source=db,target=/bc/_data \
