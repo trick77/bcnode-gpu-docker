@@ -30,16 +30,18 @@ echo
 echo -e "${GREEN}Check the following output if Docker has access to one or more GPUs:${NC}"
 docker run --rm --gpus all nvidia/cuda:10.2-base-ubuntu18.04 nvidia-smi
 
+. ./config
+
 if [ -z "${BC_MINER_KEY}" ]; then
   echo
-  echo -e "${RED}Error: Miner key missing in the environment. Type something like export BC_MINER_KEY=\"0xc0ffee...\"" >&2
+  echo -e "${RED}Error: Miner key missing." >&2
   echo -e "Aborting.${NC}" >&2
   exit 1
 fi
 
 if [ -z "${BC_SCOOKIE}" ]; then
   echo
-  echo -e "${RED}Error: Scookie is missing in the environment. Type something like export BC_SCOOKIE=\"s3cr3t\"" >&2
+  echo -e "${RED}Error: Secure cookie is missing." >&2
   echo -e "Aborting.${NC}" >&2
   exit 1
 fi
@@ -86,7 +88,7 @@ echo
 docker ps
 echo
 echo -e "${YELLOW}Verify everything runs smoothly with: docker logs -f bcnode --tail 100"
-echo -e "For the GPU miner:  docker logs -f gpuminer --tail 100"
+echo -e "For the GPU miner: docker logs -f gpuminer --tail 100"
 echo -e "Hit CTRL-C to abort the output."
 echo
 echo -e "Use ./cleanup.sh to stop the miner before restarting it."
