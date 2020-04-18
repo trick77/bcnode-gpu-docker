@@ -22,8 +22,8 @@ In a nutshell:
 1. This might be a good time for a system reboot.
 1. ```git clone https://github.com/trick77/bcnode-gpu-docker bcnode-gpu-docker && cd $_```
 1. Build the Docker images locally using ```./build-images.sh``` (grab an 0xc0ffee since this will take a while)
+1. Open the ```./config``` file and edit at least your your miner key
 1. If the image build was a success, start the containers with the provided ```./start.sh``` in this directory
-    1. Edit the ```./config``` file or pass the required parameters using environment variables. 
 
 Unfortunately, we can't use docker-compose for the whole thing yet since it doesn't support the required gpu flag.
 

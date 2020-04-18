@@ -1,3 +1,6 @@
 # Remove the hash character in front of the lines below too
-#BC_MINER_KEY="0x..."
-#BC_SCOOKIE="a-password-without-spaces-or-weird-characters"
+BC_MINER_KEY="0x..."
+BC_SCOOKIE="a-password-without-spaces-or-weird-characters"
+
+# Change these only if you know what you're doing
+#BC_MAX_CONNECTIONS=nnn
