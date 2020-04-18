@@ -1,4 +1,3 @@
-# Remove the hash character in front of the lines below too
 BC_MINER_KEY="0x..."
 BC_SCOOKIE="a-password-without-spaces-or-weird-characters"
 
