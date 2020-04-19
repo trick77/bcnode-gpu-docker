@@ -1,4 +1,4 @@
-# Docker doesn't like " in this file, make sure to remove them all
+# Docker doesn't like variables enscapulated in " in this file, make sure to remove them all
 BC_MINER_KEY=0xc...
 BC_SCOOKIE=a-password-without-spaces-or-weird-characters
 
@@ -15,3 +15,7 @@ BC_TUNNEL_HTTPS=true
 #BC_MAX_CONNECTIONS=nn
 #BC_MAX_WAYPOINT_LATENCY=nn
 #BC_LOG_WAYPOINT_RECORD=true
+#BC_WAYPOINT_STATS=true
+#BC_LOG_BLOCK_STATS=true
+#BC_DEBUG=true
+#BC_LOG=debug
