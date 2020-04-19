@@ -72,14 +72,7 @@ echo -e "${GREEN}Starting bcnode container...${NC}"
 docker run --restart=unless-stopped --name bcnode \
 --memory-reservation="6900m" \
 -p 3000:3000 -p 16060:16060/tcp -p 16060:16060/udp -p 16061:16061/tcp -p 16061:16061/udp -d \
--e BC_MINER_KEY="${BC_MINER_KEY}" \
--e BC_NETWORK="main" \
--e MIN_HEALTH_NET=true \
--e BC_TUNNEL_HTTPS=true \
--e BC_MAX_CONNECTIONS=${BC_MAX_CONNECTIONS:-50} \
--e BC_RPC_MINER=true \
--e BC_MINER_WORKERS=1 \
--e NODE_OPTIONS=--max_old_space_size=6096 \
+--env-file ./config \
 --network waietng \
 --mount source=db,target=/bc/_data \
 ${bcnode_image} \
@@ -97,7 +90,7 @@ echo
 echo -e "Use git pull to refresh this Git repository every now and then."
 echo -e "${NC}"
 
-if [ -z ${nongrok} ]; then
+if [[ ${BC_TUNNEL_HTTPS:-false} == true ]]; then
   echo -e "${GREEN}Waiting for ngrok tunnel to be up..."
   sleep 5 # a loop would be more suitable here
   echo -e "Your personal HTTPS ngrok address is:${NC}"
