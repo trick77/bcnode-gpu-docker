@@ -69,9 +69,9 @@ docker run --restart=unless-stopped  --name gpuminer \
 ${gpuminer_image} 2>&1
 
 echo -e "${GREEN}Starting bcnode container...${NC}"
-docker run --restart=unless-stopped --name bcnode \
+docker run -d --restart=unless-stopped --name bcnode \
+-p 3000:3000 -p 16060:16060/tcp -p 16060:16060/udp -p 16061:16061/tcp -p 16061:16061/udp \
 --memory-reservation="6900m" \
--p 3000:3000 -p 16060:16060/tcp -p 16060:16060/udp -p 16061:16061/tcp -p 16061:16061/udp -d \
 --env-file ./config \
 --network waietng \
 --mount source=db,target=/bc/_data \

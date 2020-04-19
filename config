@@ -1,7 +1,8 @@
-BC_MINER_KEY="0x..."
-BC_SCOOKIE="a-password-without-spaces-or-weird-characters"
+# Docker doesn't like " in this file, make sure to remove them all
+BC_MINER_KEY=0xc...
+BC_SCOOKIE=a-password-without-spaces-or-weird-characters
 
-BC_NETWORK="main"
+BC_NETWORK=main
 MIN_HEALTH_NET=true
 BC_RPC_MINER=true
 BC_MINER_WORKERS=1
@@ -11,6 +12,6 @@ NODE_OPTIONS=--max_old_space_size=6096
 BC_TUNNEL_HTTPS=true
 
 # Use these only if you know what you're doing
-#BC_MAX_CONNECTIONS=nnn
-#BC_MAX_WAYPOINT_LATENCY=nnn
+#BC_MAX_CONNECTIONS=nn
+#BC_MAX_WAYPOINT_LATENCY=nn
 #BC_LOG_WAYPOINT_RECORD=true
