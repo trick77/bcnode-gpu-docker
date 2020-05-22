@@ -9,7 +9,7 @@ YELLOW='\033[0;33m'
 if [ $# -eq 0 ]
   then
     echo -e "${RED}Error: No arguments supplied".
-    echo -e "Usage: $0 /path/to/bcnode-db-2029-11-11_11-11-11.tar.gz${NC}"
+    echo -e "Usage: $0 /path/to/bcnode-db-2029-11-12_13-14-15.tar.gz${NC}"
     exit 1
 fi
 
