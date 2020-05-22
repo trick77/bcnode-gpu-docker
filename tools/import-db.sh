@@ -72,4 +72,5 @@ docker rm -f importdb > /dev/null 2>&1
 rm -rf ${tmp_dir}
 
 echo -e "${GREEN}Done."
+echo -e "${YELLOW}Make sure to mount a named Docker volume using \"--mount source=db,target=/bc/_data\" when starting the container!${NC}"
 echo -e "You can start the ${bcnode_container_name} container now!${NC}"
