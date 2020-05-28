@@ -32,9 +32,9 @@ docker run -d --rm --name exportdb -v ${database_volume_name}:/root alpine tail 
 
 tmp_dir=`mktemp -d`
 echo -e "${GREEN}Extracting local blockchain database to ${tmp_dir}...${NC}"
-[ ! "$(docker ps | grep ${bcnode_container_name})" ] && docker pause ${bcnode_container_name}
+[ "$(docker ps | grep ${bcnode_container_name})" ] && docker pause ${bcnode_container_name}
 docker cp exportdb:/root ${tmp_dir}
-[ ! "$(docker ps | grep ${bcnode_container_name})" ] && docker unpause ${bcnode_container_name}
+[ "$(docker ps | grep ${bcnode_container_name})" ] && docker unpause ${bcnode_container_name}
 
 echo -e "${GREEN}Compressing database, this will take a while...${NC}"
 cwd=$(pwd)
