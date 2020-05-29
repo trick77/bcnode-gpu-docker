@@ -40,6 +40,7 @@ echo -e "${GREEN}Compressing database, this will take a while...${NC}"
 cwd=$(pwd)
 cd ${tmp_dir}/root
 rm ./db/IDENTITY
+rm .chainstate.db
 tar cf - ./ -P | pv -s $(du -sb ./ | awk '{print $1}') | gzip > ${cwd}/bcnode-db-${timestamp}.tar.gz
 
 echo -e "${GREEN}Cleaning up...${NC}"
