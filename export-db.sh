@@ -13,6 +13,14 @@ timestamp=`date +%Y-%m-%d_%H-%M-%S`
 bcnode_container_name=bcnode
 database_volume_name=db
 
+while [ $# -gt 0 ]; do
+  if [[ $1 == *"--"* ]]; then
+    param="${1/--/}"
+    declare ${param}="true"
+  fi
+  shift
+done
+
 if ! exists awk || ! exists pv || ! exists gzip ; then
   echo >&2 -e "${RED}Error: searching PATH fails to find executables among: awk pv gzip ${NC}"
   exit 1
@@ -32,9 +40,14 @@ docker run -d --rm --name exportdb -v ${database_volume_name}:/root alpine tail 
 
 tmp_dir=`mktemp -d`
 echo -e "${GREEN}Extracting local blockchain database to ${tmp_dir}...${NC}"
-[ "$(docker ps | grep ${bcnode_container_name})" ] && docker pause ${bcnode_container_name}
-docker cp exportdb:/root ${tmp_dir}
-[ "$(docker ps | grep ${bcnode_container_name})" ] && docker unpause ${bcnode_container_name}
+if [ ! -z ${nopause} ]; then
+  echo -e "${YELLOW}Not pausing ${bcnode_container_name} to make chainstate copy. Check its integrity when done!"
+  docker cp exportdb:/root ${tmp_dir}
+else
+  [ "$(docker ps | grep ${bcnode_container_name})" ] && docker pause ${bcnode_container_name}
+  docker cp exportdb:/root ${tmp_dir}
+  [ "$(docker ps | grep ${bcnode_container_name})" ] && docker unpause ${bcnode_container_name}
+fi
 
 echo -e "${GREEN}Compressing database, this will take a while...${NC}"
 cwd=$(pwd)
