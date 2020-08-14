@@ -40,20 +40,14 @@ docker run -d --rm --name exportdb -v ${database_volume_name}:/root alpine tail 
 
 tmp_dir=`mktemp -d`
 echo -e "${GREEN}Extracting local blockchain database to ${tmp_dir}...${NC}"
-if [ ! -z ${nopause} ]; then
-  echo -e "${YELLOW}Not pausing ${bcnode_container_name} to make chainstate copy. Check its integrity when done!"
-  docker cp exportdb:/root ${tmp_dir}
-else
-  [ "$(docker ps | grep ${bcnode_container_name})" ] && docker pause ${bcnode_container_name}
-  docker cp exportdb:/root ${tmp_dir}
-  [ "$(docker ps | grep ${bcnode_container_name})" ] && docker unpause ${bcnode_container_name}
-fi
+docker cp exportdb:/root ${tmp_dir}/_data
 
 echo -e "${GREEN}Compressing database, this will take a while...${NC}"
 cwd=$(pwd)
-cd ${tmp_dir}/root
-rm ./db/IDENTITY
-rm .chainstate.db
+cd ${tmp_dir}
+rm ./_data/.chainstate.db
+rm ./_data/db/IDENTITY
+rm ./_data/db/LOCK
 tar cf - ./ -P | pv -s $(du -sb ./ | awk '{print $1}') | gzip > ${cwd}/bcnode-db-${timestamp}.tar.gz
 
 echo -e "${GREEN}Cleaning up...${NC}"
