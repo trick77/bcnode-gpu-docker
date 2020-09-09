@@ -45,7 +45,7 @@ fi
 if [ -z ${nopurge} ]; then
   echo -e "${GREEN}Removing intermediate build products...${NC}"
   docker image prune -f
-  docker rmi nvidia/cuda:10.2-cudnn7-devel-ubuntu18.04
+  docker rmi nvidia/cuda:11.0-cudnn8-devel-ubuntu18.04
   echo
 fi
 
