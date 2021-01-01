@@ -15,7 +15,7 @@ In a nutshell:
 1. Install Debian 10 Buster as the host OS.
 1. Install the appropriate tools like ```apt-get install -y git wget curl ca-certificates jq```
 1. Install Docker from https://docs.docker.com/install/linux/docker-ce/debian/
-1. Install Nvidia's CUDA Drivers from https://us.download.nvidia.com/tesla/450.51.06/NVIDIA-Linux-x86_64-450.51.06.run 
+1. Install Nvidia's CUDA Drivers from https://us.download.nvidia.com/tesla/450.80.02/NVIDIA-Linux-x86_64-450.80.02.run 
     1. It **must** be this version of the nvidia driver to function!
     2. Do **not** run the full CUDA installer from nvidia on the host machine unless you really know what you're doing!
 1. Install https://github.com/NVIDIA/nvidia-docker
