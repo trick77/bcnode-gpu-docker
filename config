@@ -4,7 +4,8 @@ BC_SCOOKIE=a-password-without-spaces-or-weird-characters
 
 BC_NETWORK=main
 MIN_HEALTH_NET=true
-BC_RPC_MINER=true
+BC_GRPC_MINER=true
+BC_GRPC_MINER_ADDRESS=gpuminer:50052
 BC_MINER_WORKERS=1
 NODE_OPTIONS=--max_old_space_size=6096
 
